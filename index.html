@@ -1,157 +1,358 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Portfolio Responsivo</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Júlio César | Portfólio</title>
+  <meta name="description" content="Portfólio de Júlio César, estudante de Desenvolvimento de Sistemas e desenvolvedor Full Stack em formação." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { inter: ['Inter', 'sans-serif'] },
+          colors: {
+            ink: '#05070d',
+            panel: '#0a0f1a',
+            card: '#0d1422',
+            line: 'rgba(255,255,255,.10)',
+            violet: '#9D4EDD',
+            violet2: '#C77DFF',
+            cyan: '#35d6ff',
+            soft: '#aeb8c8'
+          },
+          boxShadow: {
+            glow: '0 0 50px rgba(157, 78, 221, .28)',
+            card: '0 20px 70px rgba(0,0,0,.35)'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { scroll-behavior: smooth; }
+    body { font-family: Inter, sans-serif; }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+    }
+    .noise::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .08;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+      z-index: 60;
+    }
+    .glass { background: rgba(13, 20, 34, .72); backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,.1); }
+    .shine { position: relative; overflow: hidden; }
+    .shine::after {
+      content: "";
+      position: absolute;
+      inset: -120% auto auto -120%;
+      width: 120%;
+      height: 120%;
+      transform: rotate(35deg);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent);
+      transition: .7s;
+    }
+    .shine:hover::after { inset: 120% auto auto 120%; }
+    .skill-bar span { display:block; height:100%; border-radius:999px; background:linear-gradient(90deg,#7b2ff7,#c77dff,#35d6ff); }
+  </style>
 </head>
-<body>
-    <header>
-        <div class="container header-content">
-            <div class="logo">Port<span>folio</span></div>
-            <nav>
-                <ul>
-                    <li><a href="#sobre"><i class="fas fa-user"></i> Sobre Mim</a></li>
-                    <li><a href="#projetos"><i class="fas fa-project-diagram"></i> Projetos</a></li>
-                    <li><a href="#contato"><i class="fas fa-envelope"></i> Contato</a></li>
-                </ul>
-            </nav>
+<body class="noise bg-ink text-white overflow-x-hidden">
+  <div class="fixed inset-0 -z-10 grid-bg"></div>
+  <div class="fixed -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-violet/30 blur-[120px] -z-10"></div>
+  <div class="fixed top-40 -right-40 h-[520px] w-[520px] rounded-full bg-cyan/10 blur-[130px] -z-10"></div>
+
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-line bg-ink/70 backdrop-blur-xl">
+    <nav class="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+      <a href="#inicio" class="group flex items-center gap-3">
+        <div class="flex h-11 w-11 items-center justify-center rounded-2xl border border-violet/40 bg-violet/10 shadow-glow">
+          <span class="text-xl font-black tracking-tight">JF</span>
         </div>
-    </header>
-
-    <main>
-        <section id="sobre" class="fade-in">
-            <div class="container">
-                <h2 class="section-title">Sobre Mim</h2>
-                <div class="about-content">
-                    <div class="profile-img">
-                        <img src="https://avatars.githubusercontent.com/u/205669518?v=4" alt="Foto de perfil">
-                    </div>
-                    <div class="about-text">
-                        <h3>Olá, eu sou Júlio César</h3>
-                        <p>Sou um desenvolvedor front-end apaixonado por criar experiências web incríveis e responsivas.</p>
-                        <p>Meu objetivo é criar interfaces que não apenas sejam visualmente atraentes, mas também intuitivas e acessíveis para todos os usuários. Acredito que o design e a funcionalidade devem andar juntos para proporcionar a melhor experiência possível.</p>
-                        <p>Quando não estou codando, gosto de explorar novas tendências de design, aprender novas tecnologias e contribuir para projetos de código aberto.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projetos" class="fade-in">
-            <div class="container">
-                <h2 class="section-title">Meus Projetos</h2>
-                <div class="projects-grid">
-                    <article class="project-card">
-                        <div class="project-img">
-                            <i class="fas fa-tasks"></i>
-                        </div>
-                        <div class="project-info">
-                            <h3>Sistema de Gerenciamento para Clínica Habilitar</h3>
-                            <p>Um sistema completo para gestão de processos de habilitação veicular, desenvolvido em C.</p>
-                            <a href="#" class="btn">Ver mais</a>
-                        </div>
-                    </article>
-                    <article class="project-card">
-                        <div class="project-img">
-                            <i class="fas fa-tasks"></i>
-                        </div>
-                        <div class="project-info">
-                            <h3>Aplicativo de Tarefas</h3>
-                            <p>Criação de um aplicativo web para gerenciamento de tarefas com funcionalidades de arrastar e soltar, categorias e lembretes.</p>
-                            <a href="#" class="btn">Ver mais</a>
-                        </div>
-                    </article>
-                    <article class="project-card">
-                        <div class="project-img">
-                            <i class="fas fa-tasks"></i>
-                        </div>
-                        <div class="project-info">
-                            <h3>Dashboard Analytics</h3>
-                            <p>Implementação de um painel de controle com gráficos interativos e visualização de dados em tempo real para análise de métricas.</p>
-                            <a href="#" class="btn">Ver mais</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <section id="contato" class="fade-in">
-            <div class="container">
-                <h2 class="section-title">Entre em Contato</h2>
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <h3>Informações de Contato</h3>
-                        <p><i class="fas fa-envelope"></i> juliocesarofficial9@gmail.com</p>
-                        <p><i class="fas fa-phone"></i> (61) 99999-9999</p>
-                        <p><i class="fas fa-map-marker-alt"></i> DF</p>
-                        <p>Estou sempre aberto a discutir novos projetos, ideias criativas ou oportunidades para fazer parte de sua visão.</p>
-                    </div>
-                    <div class="contact-form">
-                        <form id="contactForm">
-                            <div class="form-group">
-                                <label for="nome">Nome</label>
-                                <input type="text" id="nome" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">E-mail</label>
-                                <input type="email" id="email" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="mensagem">Mensagem</label>
-                                <textarea id="mensagem" class="form-control" required></textarea>
-                            </div>
-                            <button type="submit" class="btn">Enviar Mensagem</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                </div>
-                <div class="copyright">
-                    <p>&copy; 2023 João Silva. Todos os direitos reservados.</p>
-                </div>
-            </div>
+        <div class="hidden sm:block">
+          <p class="text-sm font-bold leading-none">Júlio César</p>
+          <p class="mt-1 text-xs text-soft">Full Stack em formação</p>
         </div>
-    </footer>
+      </a>
 
-    <script>
-        // Alternar modo escuro
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            
-            // Alterar ícone
-            const icon = themeToggle.querySelector('i');
-            if (body.classList.contains('dark-mode')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
-        });
-        
-        // Formulário de contato (apenas visual)
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Mensagem enviada com sucesso! (Esta é apenas uma demonstração visual)');
-            this.reset();
-        });
-    </script>
+      <div class="hidden items-center gap-8 lg:flex">
+        <a class="text-sm text-soft transition hover:text-white" href="#sobre">Sobre</a>
+        <a class="text-sm text-soft transition hover:text-white" href="#stack">Stack</a>
+        <a class="text-sm text-soft transition hover:text-white" href="#projetos">Projetos</a>
+        <a class="text-sm text-soft transition hover:text-white" href="#formacao">Formação</a>
+        <a class="text-sm text-soft transition hover:text-white" href="#contato">Contato</a>
+      </div>
+
+      <a href="Curriculo-júlioCesar%20(1).pdf" class="shine hidden rounded-2xl border border-violet/50 bg-violet/10 px-5 py-3 text-sm font700 text-white transition hover:bg-violet/20 md:flex items-center gap-2" target="_blank">
+        Currículo <i data-lucide="download" class="h-4 w-4"></i>
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="mx-auto grid min-h-screen max-w-7xl grid-cols-1 items-center gap-12 px-6 pb-20 pt-32 lg:grid-cols-[1.05fr_.95fr]">
+      <div>
+        <div class="mb-7 inline-flex items-center gap-3 rounded-full border border-violet/30 bg-violet/10 px-4 py-2 text-sm text-violet2">
+          <i data-lucide="sparkles" class="h-4 w-4"></i>
+          Disponível para oportunidades e novos projetos
+        </div>
+
+        <h1 class="max-w-4xl text-5xl font-black leading-[.95] tracking-[-.06em] text-white sm:text-7xl lg:text-8xl">
+          Construindo sistemas com visual forte e código funcional.
+        </h1>
+
+        <p class="mt-8 max-w-2xl text-lg leading-8 text-soft">
+          Sou Júlio César, estudante de Análise e Desenvolvimento de Sistemas no SENAC DF. Desenvolvo aplicações web, sistemas de gestão, interfaces responsivas e projetos full stack com foco em aprendizado contínuo, organização e experiência do usuário.
+        </p>
+
+        <div class="mt-10 flex flex-wrap gap-4">
+          <a href="#projetos" class="shine flex items-center gap-3 rounded-2xl bg-gradient-to-r from-violet to-violet2 px-7 py-4 text-sm font800 text-white shadow-glow transition hover:-translate-y-1">
+            Ver projetos <i data-lucide="arrow-up-right" class="h-5 w-5"></i>
+          </a>
+          <a href="#contato" class="flex items-center gap-3 rounded-2xl border border-line bg-white/5 px-7 py-4 text-sm font800 text-white transition hover:-translate-y-1 hover:border-violet/60 hover:bg-violet/10">
+            Entrar em contato <i data-lucide="send" class="h-5 w-5"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="absolute -inset-8 rounded-[3rem] bg-gradient-to-br from-violet/30 via-transparent to-cyan/20 blur-3xl"></div>
+        <div class="relative overflow-hidden rounded-[2.2rem] border border-line bg-card shadow-card">
+          <div class="absolute right-6 top-6 z-10 rounded-full border border-line bg-ink/70 px-4 py-2 text-xs text-soft backdrop-blur-xl">github.com/Julio5630</div>
+          <img src="https://github.com/Julio5630.png" alt="Foto de perfil de Júlio César" class="h-[500px] w-full object-cover opacity-90" />
+          <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink via-ink/80 to-transparent p-8">
+            <div class="glass rounded-3xl p-5">
+              <div class="flex items-center justify-between gap-4">
+                <div>
+                  <p class="text-sm text-soft">Principal foco atual</p>
+                  <p class="mt-1 text-xl font900">React, Node.js, Java e MySQL</p>
+                </div>
+                <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-violet/20 text-violet2">
+                  <i data-lucide="code-2" class="h-7 w-7"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-6 pb-24">
+      <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <div class="glass rounded-3xl p-6"><i data-lucide="folder-kanban" class="mb-5 h-8 w-8 text-violet2"></i><p class="text-4xl font900">5+</p><p class="mt-2 text-sm text-soft">Projetos publicados</p></div>
+        <div class="glass rounded-3xl p-6"><i data-lucide="award" class="mb-5 h-8 w-8 text-violet2"></i><p class="text-4xl font900">10+</p><p class="mt-2 text-sm text-soft">Certificados</p></div>
+        <div class="glass rounded-3xl p-6"><i data-lucide="server" class="mb-5 h-8 w-8 text-violet2"></i><p class="text-4xl font900">4+</p><p class="mt-2 text-sm text-soft">Tecnologias backend</p></div>
+        <div class="glass rounded-3xl p-6"><i data-lucide="layout-template" class="mb-5 h-8 w-8 text-violet2"></i><p class="text-4xl font900">7+</p><p class="mt-2 text-sm text-soft">Tecnologias frontend</p></div>
+      </div>
+    </section>
+
+    <section id="sobre" class="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-6 py-20 lg:grid-cols-[.95fr_1.05fr]">
+      <div>
+        <p class="mb-4 text-sm font800 uppercase tracking-[.22em] text-violet2">Sobre mim</p>
+        <h2 class="text-4xl font-black tracking-[-.04em] sm:text-5xl">Tecnologia, prática e evolução constante.</h2>
+        <p class="mt-6 text-lg leading-8 text-soft">
+          Sou um desenvolvedor em formação apaixonado por criar experiências web responsivas, intuitivas e acessíveis. Tenho experiência prática com projetos acadêmicos, aplicações web, páginas comerciais e sistemas conectados a banco de dados.
+        </p>
+        <p class="mt-5 text-lg leading-8 text-soft">
+          Valorizo organização, trabalho em equipe, aprendizado rápido e construção de soluções que funcionem bem tanto no visual quanto na estrutura técnica.
+        </p>
+      </div>
+
+      <div class="grid gap-4 sm:grid-cols-2">
+        <div class="glass rounded-3xl p-6"><i data-lucide="monitor-smartphone" class="h-8 w-8 text-violet2"></i><h3 class="mt-5 font800">Aplicações Web</h3><p class="mt-3 text-sm leading-6 text-soft">Interfaces modernas, responsivas e pensadas para uma boa experiência.</p></div>
+        <div class="glass rounded-3xl p-6"><i data-lucide="database" class="h-8 w-8 text-violet2"></i><h3 class="mt-5 font800">Banco de Dados</h3><p class="mt-3 text-sm leading-6 text-soft">Modelagem, consultas e integração com MySQL e TiDB Cloud.</p></div>
+        <div class="glass rounded-3xl p-6"><i data-lucide="app-window" class="h-8 w-8 text-violet2"></i><h3 class="mt-5 font800">Sistemas Desktop</h3><p class="mt-3 text-sm leading-6 text-soft">Soluções em Java com Swing, JDBC e interface gráfica.</p></div>
+        <div class="glass rounded-3xl p-6"><i data-lucide="git-branch" class="h-8 w-8 text-violet2"></i><h3 class="mt-5 font800">Versionamento</h3><p class="mt-3 text-sm leading-6 text-soft">Organização de projetos com Git, GitHub e boas práticas.</p></div>
+      </div>
+    </section>
+
+    <section id="stack" class="mx-auto max-w-7xl px-6 py-20">
+      <div class="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+        <div>
+          <p class="mb-4 text-sm font800 uppercase tracking-[.22em] text-violet2">Stack técnica</p>
+          <h2 class="text-4xl font-black tracking-[-.04em] sm:text-5xl">Linguagens e tecnologias.</h2>
+        </div>
+        <p class="max-w-xl text-soft">Um painel visual organizado por uso prático, sem copiar o layout do README e sem depender apenas de estatísticas externas.</p>
+      </div>
+
+      <div class="grid gap-6 lg:grid-cols-[1fr_.8fr]">
+        <div class="glass rounded-[2rem] p-6 sm:p-8">
+          <div class="mb-7 flex items-center justify-between gap-4">
+            <div>
+              <h3 class="text-2xl font900">Linguagens mais usadas</h3>
+              <p class="mt-2 text-sm text-soft">Organização visual por domínio de estudo e prática.</p>
+            </div>
+            <i data-lucide="bar-chart-3" class="h-8 w-8 text-violet2"></i>
+          </div>
+
+          <div class="space-y-5">
+            <div>
+              <div class="mb-2 flex items-center justify-between text-sm"><span class="font700">JavaScript</span><span class="text-soft">Frontend e Backend</span></div>
+              <div class="skill-bar h-3 rounded-full bg-white/10"><span style="width: 92%"></span></div>
+            </div>
+            <div>
+              <div class="mb-2 flex items-center justify-between text-sm"><span class="font700">React</span><span class="text-soft">Interfaces web</span></div>
+              <div class="skill-bar h-3 rounded-full bg-white/10"><span style="width: 88%"></span></div>
+            </div>
+            <div>
+              <div class="mb-2 flex items-center justify-between text-sm"><span class="font700">HTML e CSS</span><span class="text-soft">Base visual</span></div>
+              <div class="skill-bar h-3 rounded-full bg-white/10"><span style="width: 86%"></span></div>
+            </div>
+            <div>
+              <div class="mb-2 flex items-center justify-between text-sm"><span class="font700">Node.js</span><span class="text-soft">APIs REST</span></div>
+              <div class="skill-bar h-3 rounded-full bg-white/10"><span style="width: 76%"></span></div>
+            </div>
+            <div>
+              <div class="mb-2 flex items-center justify-between text-sm"><span class="font700">Java</span><span class="text-soft">Desktop e POO</span></div>
+              <div class="skill-bar h-3 rounded-full bg-white/10"><span style="width: 68%"></span></div>
+            </div>
+            <div>
+              <div class="mb-2 flex items-center justify-between text-sm"><span class="font700">MySQL</span><span class="text-soft">Banco de dados</span></div>
+              <div class="skill-bar h-3 rounded-full bg-white/10"><span style="width: 72%"></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1">
+          <div class="glass rounded-[2rem] p-6">
+            <div class="flex items-center gap-3"><i data-lucide="layers-3" class="h-6 w-6 text-violet2"></i><h3 class="font900">Frontend</h3></div>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="rounded-full bg-white/8 px-4 py-2 text-sm">React</span><span class="rounded-full bg-white/8 px-4 py-2 text-sm">React Native</span><span class="rounded-full bg-white/8 px-4 py-2 text-sm">JavaScript</span><span class="rounded-full bg-white/8 px-4 py-2 text-sm">TypeScript</span><span class="rounded-full bg-white/8 px-4 py-2 text-sm">HTML5</span><span class="rounded-full bg-white/8 px-4 py-2 text-sm">CSS3</span><span class="rounded-full bg-white/8 px-4 py-2 text-sm">Bootstrap</span>
+            </div>
+          </div>
+          <div class="glass rounded-[2rem] p-6">
+            <div class="flex items-center gap-3"><i data-lucide="terminal" class="h-6 w-6 text-violet2"></i><h3 class="font900">Backend e dados</h3></div>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="rounded-full bg-white/8 px-4 py-2 text-sm">Node.js</span><span class="rounded-full bg-white/8 px-4 py-2 text-sm">Express</span><span class="rounded-full bg-white/8 px-4 py-2 text-sm">Java</span><span class="rounded-full bg-white/8 px-4 py-2 text-sm">MySQL</span><span class="rounded-full bg-white/8 px-4 py-2 text-sm">TiDB</span><span class="rounded-full bg-white/8 px-4 py-2 text-sm">JDBC</span>
+            </div>
+          </div>
+          <div class="glass rounded-[2rem] p-6">
+            <div class="flex items-center gap-3"><i data-lucide="wrench" class="h-6 w-6 text-violet2"></i><h3 class="font900">Ferramentas</h3></div>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="rounded-full bg-white/8 px-4 py-2 text-sm">Git</span><span class="rounded-full bg-white/8 px-4 py-2 text-sm">GitHub</span><span class="rounded-full bg-white/8 px-4 py-2 text-sm">VS Code</span><span class="rounded-full bg-white/8 px-4 py-2 text-sm">NetBeans</span><span class="rounded-full bg-white/8 px-4 py-2 text-sm">Vite</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projetos" class="mx-auto max-w-7xl px-6 py-20">
+      <div class="mb-10 flex flex-col justify-between gap-5 md:flex-row md:items-end">
+        <div>
+          <p class="mb-4 text-sm font800 uppercase tracking-[.22em] text-violet2">Projetos</p>
+          <h2 class="text-4xl font-black tracking-[-.04em] sm:text-5xl">Soluções reais e acadêmicas.</h2>
+        </div>
+        <a href="https://github.com/Julio5630" target="_blank" class="flex w-fit items-center gap-3 rounded-2xl border border-line bg-white/5 px-6 py-3 text-sm font800 transition hover:border-violet/50 hover:bg-violet/10">Ver GitHub <i data-lucide="github" class="h-5 w-5"></i></a>
+      </div>
+
+      <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <article class="glass group rounded-[2rem] p-5 transition hover:-translate-y-2 hover:border-violet/40">
+          <div class="mb-5 flex h-44 items-center justify-center rounded-3xl bg-gradient-to-br from-green-400/20 to-emerald-500/5"><i data-lucide="dumbbell" class="h-16 w-16 text-green-300"></i></div>
+          <h3 class="text-xl font900">Gym Diary</h3>
+          <p class="mt-3 min-h-20 text-sm leading-6 text-soft">Plataforma para gestão de treinos, avaliações físicas e acompanhamento de alunos.</p>
+          <div class="mt-4 flex flex-wrap gap-2"><span class="rounded-full bg-violet/15 px-3 py-1 text-xs text-violet2">React</span><span class="rounded-full bg-violet/15 px-3 py-1 text-xs text-violet2">Node.js</span><span class="rounded-full bg-violet/15 px-3 py-1 text-xs text-violet2">MySQL</span></div>
+          <a href="https://jf-track.vercel.app/login" target="_blank" class="mt-6 flex items-center gap-2 text-sm font800 text-violet2">Abrir projeto <i data-lucide="external-link" class="h-4 w-4"></i></a>
+        </article>
+
+        <article class="glass group rounded-[2rem] p-5 transition hover:-translate-y-2 hover:border-violet/40">
+          <div class="mb-5 flex h-44 items-center justify-center rounded-3xl bg-gradient-to-br from-blue-400/20 to-cyan-500/5"><i data-lucide="car-front" class="h-16 w-16 text-cyan"></i></div>
+          <h3 class="text-xl font900">DF Vistoria</h3>
+          <p class="mt-3 min-h-20 text-sm leading-6 text-soft">Sistema desktop em Java para gerenciamento de vistorias veiculares.</p>
+          <div class="mt-4 flex flex-wrap gap-2"><span class="rounded-full bg-violet/15 px-3 py-1 text-xs text-violet2">Java</span><span class="rounded-full bg-violet/15 px-3 py-1 text-xs text-violet2">Swing</span><span class="rounded-full bg-violet/15 px-3 py-1 text-xs text-violet2">MySQL</span></div>
+          <a href="https://github.com/Julio5630/DF-Vistoria" target="_blank" class="mt-6 flex items-center gap-2 text-sm font800 text-violet2">Abrir repositório <i data-lucide="external-link" class="h-4 w-4"></i></a>
+        </article>
+
+        <article class="glass group rounded-[2rem] p-5 transition hover:-translate-y-2 hover:border-violet/40">
+          <div class="mb-5 flex h-44 items-center justify-center rounded-3xl bg-gradient-to-br from-orange-400/20 to-zinc-500/5"><i data-lucide="hammer" class="h-16 w-16 text-orange-300"></i></div>
+          <h3 class="text-xl font900">Serralheria</h3>
+          <p class="mt-3 min-h-20 text-sm leading-6 text-soft">Landing page comercial para serviços de serralheria com foco em apresentação e contato.</p>
+          <div class="mt-4 flex flex-wrap gap-2"><span class="rounded-full bg-violet/15 px-3 py-1 text-xs text-violet2">React</span><span class="rounded-full bg-violet/15 px-3 py-1 text-xs text-violet2">Vite</span><span class="rounded-full bg-violet/15 px-3 py-1 text-xs text-violet2">GSAP</span></div>
+          <a href="https://serralheria-inky.vercel.app/" target="_blank" class="mt-6 flex items-center gap-2 text-sm font800 text-violet2">Abrir projeto <i data-lucide="external-link" class="h-4 w-4"></i></a>
+        </article>
+
+        <article class="glass group rounded-[2rem] p-5 transition hover:-translate-y-2 hover:border-violet/40">
+          <div class="mb-5 flex h-44 items-center justify-center rounded-3xl bg-gradient-to-br from-teal-400/20 to-green-500/5"><i data-lucide="activity" class="h-16 w-16 text-teal-300"></i></div>
+          <h3 class="text-xl font900">FisioVida</h3>
+          <p class="mt-3 min-h-20 text-sm leading-6 text-soft">Site institucional responsivo para clínica de fisioterapia.</p>
+          <div class="mt-4 flex flex-wrap gap-2"><span class="rounded-full bg-violet/15 px-3 py-1 text-xs text-violet2">React</span><span class="rounded-full bg-violet/15 px-3 py-1 text-xs text-violet2">Vite</span><span class="rounded-full bg-violet/15 px-3 py-1 text-xs text-violet2">CSS</span></div>
+          <a href="https://github.com/Julio5630/Clinica-Fisioterapia" target="_blank" class="mt-6 flex items-center gap-2 text-sm font800 text-violet2">Abrir repositório <i data-lucide="external-link" class="h-4 w-4"></i></a>
+        </article>
+      </div>
+    </section>
+
+    <section id="formacao" class="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-6 py-20 lg:grid-cols-2">
+      <div class="glass rounded-[2rem] p-8">
+        <div class="mb-8 flex items-center gap-3"><i data-lucide="graduation-cap" class="h-7 w-7 text-violet2"></i><h2 class="text-2xl font900">Formação acadêmica</h2></div>
+        <div class="space-y-8 border-l border-violet/40 pl-6">
+          <div class="relative"><span class="absolute -left-[31px] top-1 h-3 w-3 rounded-full bg-violet2"></span><h3 class="font800">Técnico em Análise e Desenvolvimento de Sistemas</h3><p class="mt-2 text-sm text-soft">SENAC DF</p><p class="mt-1 text-sm text-soft">01/2025 - 07/2026</p><span class="mt-3 inline-flex rounded-full bg-green-400/10 px-3 py-1 text-xs text-green-300">Cursando</span></div>
+          <div class="relative"><span class="absolute -left-[31px] top-1 h-3 w-3 rounded-full bg-white"></span><h3 class="font800">Formação Inicial e Continuada em Desenvolvimento de Software</h3><p class="mt-2 text-sm text-soft">SENAC DF</p><p class="mt-1 text-sm text-soft">10/2024 - 12/2024</p><span class="mt-3 inline-flex rounded-full bg-violet/15 px-3 py-1 text-xs text-violet2">Concluído</span></div>
+        </div>
+      </div>
+
+      <div class="glass rounded-[2rem] p-8">
+        <div class="mb-8 flex items-center gap-3"><i data-lucide="badge-check" class="h-7 w-7 text-violet2"></i><h2 class="text-2xl font900">Certificados</h2></div>
+        <div class="grid gap-3 sm:grid-cols-2">
+          <p class="flex gap-3 text-sm text-soft"><i data-lucide="check-circle-2" class="h-5 w-5 shrink-0 text-violet2"></i>Noções básicas de JavaScript</p>
+          <p class="flex gap-3 text-sm text-soft"><i data-lucide="check-circle-2" class="h-5 w-5 shrink-0 text-violet2"></i>Noções básicas de sistemas operacionais</p>
+          <p class="flex gap-3 text-sm text-soft"><i data-lucide="check-circle-2" class="h-5 w-5 shrink-0 text-violet2"></i>Sistema Operacional Linux</p>
+          <p class="flex gap-3 text-sm text-soft"><i data-lucide="check-circle-2" class="h-5 w-5 shrink-0 text-violet2"></i>Sistema Operacional Windows</p>
+          <p class="flex gap-3 text-sm text-soft"><i data-lucide="check-circle-2" class="h-5 w-5 shrink-0 text-violet2"></i>Segurança em dispositivos móveis</p>
+          <p class="flex gap-3 text-sm text-soft"><i data-lucide="check-circle-2" class="h-5 w-5 shrink-0 text-violet2"></i>Curso Técnico em ADS</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" class="mx-auto max-w-7xl px-6 py-20">
+      <div class="grid gap-5 lg:grid-cols-[.9fr_1.1fr]">
+        <div class="glass rounded-[2rem] p-8">
+          <p class="mb-4 text-sm font800 uppercase tracking-[.22em] text-violet2">Contato</p>
+          <h2 class="text-4xl font-black tracking-[-.04em]">Vamos conversar?</h2>
+          <p class="mt-5 text-soft">Estou aberto a oportunidades, projetos, colaborações e conexões na área de tecnologia.</p>
+          <a href="mailto:juliocesaroficial9@gmail.com" class="shine mt-8 inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-violet to-violet2 px-7 py-4 text-sm font800 text-white shadow-glow">Enviar e-mail <i data-lucide="mail" class="h-5 w-5"></i></a>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <a href="https://github.com/Julio5630" target="_blank" class="glass group rounded-[2rem] p-6 transition hover:-translate-y-1 hover:border-violet/50"><div class="mb-8 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10"><i data-lucide="github" class="h-6 w-6"></i></div><h3 class="font900">GitHub</h3><p class="mt-2 text-sm text-soft">github.com/Julio5630</p></a>
+          <a href="https://www.linkedin.com/in/julioferreira" target="_blank" class="glass group rounded-[2rem] p-6 transition hover:-translate-y-1 hover:border-violet/50"><div class="mb-8 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-500/15"><i data-lucide="linkedin" class="h-6 w-6 text-blue-300"></i></div><h3 class="font900">LinkedIn</h3><p class="mt-2 text-sm text-soft">linkedin.com/in/julioferreira</p></a>
+          <a href="https://www.instagram.com/julio_ferreira002/" target="_blank" class="glass group rounded-[2rem] p-6 transition hover:-translate-y-1 hover:border-violet/50"><div class="mb-8 flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-500/15"><i data-lucide="instagram" class="h-6 w-6 text-pink-300"></i></div><h3 class="font900">Instagram</h3><p class="mt-2 text-sm text-soft">@julio_ferreira002</p></a>
+          <a href="tel:+5561998079657" class="glass group rounded-[2rem] p-6 transition hover:-translate-y-1 hover:border-violet/50"><div class="mb-8 flex h-12 w-12 items-center justify-center rounded-2xl bg-green-500/15"><i data-lucide="phone" class="h-6 w-6 text-green-300"></i></div><h3 class="font900">Telefone</h3><p class="mt-2 text-sm text-soft">(61) 99807-9657</p></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-line px-6 py-10">
+    <div class="mx-auto flex max-w-7xl flex-col justify-between gap-4 text-sm text-soft md:flex-row md:items-center">
+      <p>© 2026 Júlio César. Desenvolvido com foco, estudo e dedicação.</p>
+      <a href="#inicio" class="flex items-center gap-2 text-white">Voltar ao topo <i data-lucide="arrow-up" class="h-4 w-4"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('opacity-100', 'translate-y-0');
+          entry.target.classList.remove('opacity-0', 'translate-y-8');
+        }
+      });
+    }, { threshold: .1 });
+
+    document.querySelectorAll('section').forEach((section) => {
+      section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
